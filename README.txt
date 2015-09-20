@@ -1,102 +1,38 @@
-CS542 Design Patterns
-Spring 2015
-PROJECT <1> README FILE
+Project Description 
 
-Due Date: <Monday, March 09, 2015>
-Submission Date: <Monday, March 09, 2015>
-Grace Period Used This Project: <0> Days
-Grace Period Remaining: <0> Days
-Author(s): <Pravin Nagare> 
-e-mail(s): <pnagare1@binghamton.edu> 
+Design Server-side code that opens a socket connection on the localhost. The port number for the server should be read from the command line. The server-code should accept connections on the socket. Each connection should be handled by a new thread. This ServerWorker thread should read the following from the socket: the client name and an integer value. The server should check if the integer value is greater than a threshold "THRESHOLD". The "THRESHOLD" value should be defined as a constant, 3, in the Server code. The client input could be in the following format, or any other format that you choose:
+< primeQuery>< clientName>Bill< /clientName>< isPrime>17< /isPrime>< /primeQuery>
 
-PURPOSE:
-[
-  To design a simple multi-threaded client-server code in Java and apply the design principles/patterns we have learned so far.
-]
+The server side uses a class named CheckPrime with a method that determines if a given interger is prime. The server should respond back to the client with either of these messages:
+< primeQueryResponse>< intValue>17< /intValue>< isPrime>Yes< /isPrime>< /primeQueryResponse>
+￼￼￼￼￼￼￼￼￼￼http://www.cs.binghamton.edu/~mgovinda/courses/cs542-Spring-2015/assignments/assign2/assign2.html 1/3
+Programming Design Patterns: Assignment 2
+or
+< primeQueryResponse>< intValue>3559< /intValue>< isPrime>No Idea!< /isPrime>< /primeQueryResponse> or
+< primeQueryResponse>< intValue>2< /intValue>< isPrime>Not Valid< /isPrime>< /primeQueryResponse>
+[Note: You need not have whitespaces as shown above.]
+The server side should define a class named, AllPrimeQueries, that has a data structure that stores all the client names and values that were queries.
 
-PERCENT COMPLETE:
-[
-  I believe I have completed 100% of this assignment as per the requirements. 
-]
+The server side should have a text-based menu that allows provides the following options:
+[1] Client Name [print the name and query integer]
+[2] All Client Queries [print all names and queries so far] [3] Quit [quit the server]
+The server side menu is just to view the requests that have been received so far. The CheckPrime class should have a method to take an int parameter and return a String. The server menu does not ask the user to determine if the client input is prime or not.
 
-PARTS THAT ARE NOT COMPLETE:
-[
-  I believe everything is complete.
-]
+If a client sends multiple requests, then all the name-value pairs can be printed in this way
+johnDoe 13 17 19
 
-BUGS:
+If the server quits, all connected clients should catch the exception and quit too.
 
-[
-  None
-]
+Design Client-side code that opens a socket connection to a port and host. The port and host should be read from the command line. The client should also be driven by a text-based menu for
+[1] Set client name
+[2] Enter number to query for prime [3] What is the server response?
+[4] Quit
 
-FILES:
+Assume that the client will always use #1 before #2. It should be possible to keep using option #1 to change the client name. When #2 is chosen, the latest client name should be used.
+The server response on the prime number will be printed when the option #3 is chosen.
+Use join so that the main thread waits for the client thread(s) to complete.
+Use join so that the main thread waits for the server thread(s) to complete.
+The PrimeDriver has the main function. It calls ClientDriver or ServerDriver depending on the command line argument.
 
-[
-
-Included with this project are 12 class files and 2 interfaces:
-Class files-
-PrimeDriver.java: The driver class which contains main function.
-ServerDriver.java: The server socket thread is created and server menu method is called in this file.
-ClientDriver.java: The server socket is created in this file.
-ServerMenu.java: Displays menu on server side to access data from hash table.
-ClientMenu.java: Displays menu on client side to take input from client.
-Debug.java: Debug the flow of program.
-CheckPrime.java: Checks if number is prime or not
-AllPrimeQueries.java: Operations to add data entries to data structure and display them.
-PrimeServerSocket.java: File creates socket and PrimeServerWorker thread is started
-PrimeServerWorker.java: To interact with client
-PrimeClientSocket.java: File creates socket and PrimeClientWorker thread is started.
-PrimeClientWorker.java: To interact with server
-
-Interface files-
-ClientMenuInterface interface for client menu
-ServerMenuInterface interface for server menu
-
-]
-
-SAMPLE OUTPUT:
-
-[
-
-
-]
-
-TO COMPILE:
-
-[
-  ant -buildfile src/build.xml all
-]
-
-TO RUN:
-
-[
-  ant -buildfile src/build.xml run
-]
-
-EXTRA CREDIT:
-
-[
-  Project running successfully using ANT. 
-  DEBUG_VALUE=1 [Print to stdout everytime a constructor is called] 			
-  DEBUG_VALUE=2 [Print all the client side methods]
-  DEBUG_VALUE=3 [Print all server side methods]
-  DEBUG_VALUE=4 [Print to stdout everytime server socket created, client/server responded]
-    	
-]
-
-BIBLIOGRAPHY:
-
-[
-http://stackoverflow.com/questions/22663107/print-all-key-value-pairs-in-a-java-concurrenthashmap
-http://www.dotnetperls.com/arraylist-java
-http://stackoverflow.com/questions/12358363/how-do-i-store-many-values-with-one-key
-]
-
-ACKNOWLEDGEMENT:
-[
-
-Prof. Madhusudhan Govindaraju
-cs542.cs.binghamton.edu mailing list
-
-]
+Debug
+Define a Singleton Debug class and design your own scheme for what to print for different debug values.
