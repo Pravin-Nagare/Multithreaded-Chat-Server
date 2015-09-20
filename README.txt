@@ -5,12 +5,10 @@ Design Server-side code that opens a socket connection on the localhost. The por
 
 The server side uses a class named CheckPrime with a method that determines if a given interger is prime. The server should respond back to the client with either of these messages:
 < primeQueryResponse>< intValue>17< /intValue>< isPrime>Yes< /isPrime>< /primeQueryResponse>
-￼￼￼￼￼￼￼￼￼￼http://www.cs.binghamton.edu/~mgovinda/courses/cs542-Spring-2015/assignments/assign2/assign2.html 1/3
-Programming Design Patterns: Assignment 2
 or
 < primeQueryResponse>< intValue>3559< /intValue>< isPrime>No Idea!< /isPrime>< /primeQueryResponse> or
 < primeQueryResponse>< intValue>2< /intValue>< isPrime>Not Valid< /isPrime>< /primeQueryResponse>
-[Note: You need not have whitespaces as shown above.]
+
 The server side should define a class named, AllPrimeQueries, that has a data structure that stores all the client names and values that were queries.
 
 The server side should have a text-based menu that allows provides the following options:
